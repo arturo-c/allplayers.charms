@@ -1,0 +1,7 @@
+# NOTE
+
+`sandbox/data/Puppet.zip` is a build of the puppet repo with submodules and gpg keys ready to go...
+
+git clone git@github.com:AllPlayers/Puppet.git
+git submodule init; git submodule update; git submodule sync
+
