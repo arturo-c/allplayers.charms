@@ -18,9 +18,14 @@ rm -rf /etc/puppet
 mv Puppet /etc/puppet
 
 juju-log "Hack: Forcing fqdn with"
+# TODO: Get "staging" string from config-get juju environment.
+touch /etc/puppet/hieradata/env/staging.yaml
 touch /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
+sed -e "s/ENVIRONMENTNAME/staging/g" \
+$hooksdir/data/env.yaml > /etc/puppet/hieradata/env/staging.yaml
 sed -e "s/base_url:.*/base_url: `unit-get private-address`/g" \
-$hooksdir/data/ec2.yaml > /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
+-e "s/ENVIRONMENTNAME/staging/g" \
+$hooksdir/data/fqdn.yaml > /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
 
 juju-log "Running Puppet apply (a couple of times?) to deploy onto the machine."
 cd /etc/puppet

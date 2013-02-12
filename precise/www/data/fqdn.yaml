@@ -1,0 +1,3 @@
+---
+environment: ENVIRONMENTNAME
+server_roles: - frontend
