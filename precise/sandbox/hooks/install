@@ -19,9 +19,10 @@ mv Puppet /etc/puppet
 
 juju-log "Hack: Forcing fqdn with"
 touch /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
-sed -e "s/base_url:.*/base_url: `unit-get public-address`/g" /etc/puppet/hieradata/fqdn/a.cchristensen.allplayers.com.yaml > /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
+sed -e "s/base_url:.*/base_url: `unit-get private-address`/g" /etc/puppet/hieradata/fqdn/a.cchristensen.allplayers.com.yaml > /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
 
 juju-log "Running Puppet apply (a couple of times?) to deploy onto the machine."
 cd /etc/puppet
 puppet apply /etc/puppet/manifests/site.pp --debug --verbose --external_nodes=/etc/puppet/nodes_extlookup.rb --confdir=/etc/puppet --node_terminus=exec --environment=development
 open-port 80/tcp
+open-port 443
