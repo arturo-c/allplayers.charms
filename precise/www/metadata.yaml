@@ -1,0 +1,8 @@
+name: www
+summary: "AllPlayers www lb frontend"
+maintainer: "AllPlayers Ops <ops@allplayers.com>"
+description: |
+    Installs the AllPlayers load balancer www frontend reverse proxy and nfs.
+provides:
+  url:
+    interface: http
