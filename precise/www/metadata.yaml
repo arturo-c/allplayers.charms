@@ -4,5 +4,8 @@ maintainer: "AllPlayers Ops <ops@allplayers.com>"
 description: |
     Installs the AllPlayers load balancer www frontend reverse proxy and nfs.
 provides:
-  url:
+  website:
     interface: http
+requires:
+  app:
+    interface: application

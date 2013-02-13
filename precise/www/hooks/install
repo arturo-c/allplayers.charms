@@ -30,5 +30,6 @@ $hooksdir/data/fqdn.yaml > /etc/puppet/hieradata/fqdn/`unit-get private-address`
 juju-log "Running Puppet apply (a couple of times?) to deploy onto the machine."
 cd /etc/puppet
 puppet apply /etc/puppet/manifests/site.pp --debug --verbose --external_nodes=/etc/puppet/nodes_extlookup.rb --confdir=/etc/puppet --node_terminus=exec --environment=development
+
 open-port 80/tcp
 open-port 443

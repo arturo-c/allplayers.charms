@@ -4,5 +4,5 @@ maintainer: "AllPlayers Ops <ops@allplayers.com>"
 description: |
     Installs the AllPlayers full stack sandbox using Puppet apply.
 provides:
-  url:
+  sandbox:
     interface: http
