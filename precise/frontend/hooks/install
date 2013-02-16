@@ -25,8 +25,8 @@ sed -e "s/ENVIRONMENTNAME/$JUJU_ENV_UUID/g" \
 /etc/puppet/hieradata/env/template-staging.yaml > /etc/puppet/hieradata/env/$JUJU_ENV_UUID.yaml
 sed -e "s/base_url:.*/base_url: `unit-get private-address`/g" \
 -e "s/ENVIRONMENTNAME/$JUJU_ENV_UUID/g" \
-$hooksdir/data/fqdn.yaml > /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
-# /etc/puppet/hieradata/fqdn/template-frontend.yaml
+/etc/puppet/hieradata/fqdn/template-frontend.yaml > /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
+# Could use $JUJU_UNIT_NAME => "frontend/0"
 
 juju-log "Running Puppet apply (a couple of times?) to deploy onto the machine."
 cd /etc/puppet
