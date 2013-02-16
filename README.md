@@ -16,3 +16,25 @@ Some links of note:
 *  [Writing a Charm]( https://juju.ubuntu.com/docs/write-charm.html)
    *  [Juju Charms Repo](https://code.launchpad.net/charms/+branches?field.lifecycle=MATURE&field.lifecycle-empty-marker=1&field.sort_by=most+recently+changed+first&field.sort_by-empty-marker=1)
 
+
+## Provisioning AllPlayers stack as a single instance
+
+(sandbox)
+`juju deploy --constraints "mem=4G" --repository=allplayers.charms local:precise/sandbox`
+
+
+## Provisioning AllPlayers stack as interconnected units
+
+(staging / prod)
+
+```sh
+juju deploy --constraints "instance-type=m1.large" --repository=allplayers.charms local:precise/www
+juju deploy --constraints "instance-type=m2.2xlarge" --repository=allplayers.charms local:precise/app
+# juju deploy --constraints "instance-type=m2.2xlarge" --repository=allplayers.charms local:precise/app
+# juju deploy --constraints "instance-type=hi1.4xlarge" --repository=allplayers.charms local:precise/db
+
+juju add-relation www app
+juju add-relation app db
+juju expose www
+```
+
