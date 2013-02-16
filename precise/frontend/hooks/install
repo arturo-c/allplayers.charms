@@ -19,22 +19,18 @@ mv Puppet /etc/puppet
 
 juju-log "Hack: Forcing fqdn with"
 # TODO: Get "staging" string from config-get juju environment.
-touch /etc/puppet/hieradata/env/staging.yaml
+touch /etc/puppet/hieradata/env/$JUJU_ENV_UUID.yaml
 touch /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
-sed -e "s/ENVIRONMENTNAME/staging/g" \
-$hooksdir/data/env.yaml > /etc/puppet/hieradata/env/staging.yaml
+sed -e "s/ENVIRONMENTNAME/$JUJU_ENV_UUID/g" \
+/etc/puppet/hieradata/env/template-staging.yaml > /etc/puppet/hieradata/env/$JUJU_ENV_UUID.yaml
 sed -e "s/base_url:.*/base_url: `unit-get private-address`/g" \
--e "s/ENVIRONMENTNAME/staging/g" \
+-e "s/ENVIRONMENTNAME/$JUJU_ENV_UUID/g" \
 $hooksdir/data/fqdn.yaml > /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
+# /etc/puppet/hieradata/fqdn/template-frontend.yaml
 
 juju-log "Running Puppet apply (a couple of times?) to deploy onto the machine."
 cd /etc/puppet
 puppet apply /etc/puppet/manifests/site.pp --debug --verbose --external_nodes=/etc/puppet/nodes_extlookup.rb --confdir=/etc/puppet --node_terminus=exec --environment=development
 
-# Note: This may not be necessary; only for publicly exposing.
-# https://juju.ubuntu.com/docs/internals/expose-services.html
-# apache
-open-port 8080
-open-port 8181
-# memcache
-open-port 11211
+open-port 80/tcp
+open-port 443

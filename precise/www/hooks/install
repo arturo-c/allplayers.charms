@@ -31,5 +31,10 @@ juju-log "Running Puppet apply (a couple of times?) to deploy onto the machine."
 cd /etc/puppet
 puppet apply /etc/puppet/manifests/site.pp --debug --verbose --external_nodes=/etc/puppet/nodes_extlookup.rb --confdir=/etc/puppet --node_terminus=exec --environment=development
 
-open-port 80/tcp
-open-port 443
+# Note: This may not be necessary; only for publicly exposing.
+# https://juju.ubuntu.com/docs/internals/expose-services.html
+# apache
+open-port 8080
+open-port 8181
+# memcache
+open-port 11211

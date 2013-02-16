@@ -1,11 +1,11 @@
 name: www
-summary: "AllPlayers www lb frontend"
+summary: "AllPlayers application"
 maintainer: "AllPlayers Ops <ops@allplayers.com>"
 description: |
-    Installs the AllPlayers load balancer www frontend reverse proxy and nfs.
+    Installs the AllPlayers application.
 provides:
-  website:
-    interface: http
-requires:
-  app:
+  www:
     interface: application
+requires:
+  db-master:
+    interface: mysql

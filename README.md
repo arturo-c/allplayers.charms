@@ -28,13 +28,13 @@ Some links of note:
 (staging / prod)
 
 ```sh
-juju deploy --constraints "instance-type=m1.large" --repository=allplayers.charms local:precise/www
-juju deploy --constraints "instance-type=m2.2xlarge" --repository=allplayers.charms local:precise/app
-# juju deploy --constraints "instance-type=m2.2xlarge" --repository=allplayers.charms local:precise/app
+juju deploy --constraints "instance-type=m1.large" --repository=allplayers.charms local:precise/frontend
+juju deploy --constraints "instance-type=m2.2xlarge" --repository=allplayers.charms local:precise/www
+# juju deploy --constraints "instance-type=m2.2xlarge" --repository=allplayers.charms local:precise/www
 # juju deploy --constraints "instance-type=hi1.4xlarge" --repository=allplayers.charms local:precise/db
 
-juju add-relation www app
-juju add-relation app db
-juju expose www
+juju add-relation frontend www
+juju add-relation www db
+juju expose frontend
 ```
 
