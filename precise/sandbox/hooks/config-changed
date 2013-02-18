@@ -1,23 +1,9 @@
 #!/bin/bash
 
 hooksdir=$PWD
-juju-log "Hack: Getting puppet files into place"
-# TODO: Get Puppet files from some build source (s3?).
-# TODO: Keep this script with ^ build or in a central location.
-# TODO: Make puppet /etc rebuild a config source (^S3?) or if empty
-mkdir -p /etc/puppet
-unzip $hooksdir/data/Puppet.zip
-rm -rf /etc/puppet
-mv Puppet /etc/puppet
 
-juju-log "Hack: Forcing fqdn for environment: $JUJU_ENV_UUID"
-touch /etc/puppet/hieradata/env/$JUJU_ENV_UUID.yaml
-touch /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
-sed -e "s/ENVIRONMENTNAME/$JUJU_ENV_UUID/g" \
-/etc/puppet/hieradata/env/template-staging.yaml > /etc/puppet/hieradata/env/$JUJU_ENV_UUID.yaml
-sed -e "s/base_url:.*/base_url: `unit-get private-address`/g" \
--e "s/ENVIRONMENTNAME/$JUJU_ENV_UUID/g" \
-/etc/puppet/hieradata/fqdn/template-`echo $JUJU_UNIT_NAME | cut -d'/' -f1`.yaml > /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
+# TODO: Accept config changes to pull an updated Puppet manifest and run
+#  another puppet apply.
 
 # Kick off puppet run
 $hooksdir/hooks/run-puppet
