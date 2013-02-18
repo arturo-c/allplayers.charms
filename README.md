@@ -38,3 +38,11 @@ juju add-relation www db
 juju expose frontend
 ```
 
+
+## Development
+
+Match charm name to enforcer role.
+
+Puppet local dev copy to charms: `./scripts/mv_puppet_to_charms.sh`
+Templates for hooks shared across all charms: `./scripts/cp_hook_templates.sh`
+

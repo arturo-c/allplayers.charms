@@ -1,1 +1,4 @@
 #!/bin/bash
+close-port 8080
+close-port 8181
+close-port 11211

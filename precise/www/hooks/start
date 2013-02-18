@@ -1,1 +1,8 @@
 #!/bin/bash
+# Note: This may not be necessary; only for publicly exposing.
+# https://juju.ubuntu.com/docs/internals/expose-services.html
+# apache
+open-port 8080
+open-port 8181
+# memcache
+open-port 11211

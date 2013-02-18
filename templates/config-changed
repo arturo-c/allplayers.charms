@@ -1,0 +1,24 @@
+#!/bin/bash
+
+hooksdir=$PWD
+juju-log "Hack: Getting puppet files into place"
+# TODO: Get Puppet files from some build source (s3?).
+# TODO: Keep this script with ^ build or in a central location.
+mkdir -p /etc/puppet
+unzip $hooksdir/data/Puppet.zip
+rm -rf /etc/puppet
+mv Puppet /etc/puppet
+
+juju-log "Hack: Forcing fqdn for environment: $JUJU_ENV_UUID"
+touch /etc/puppet/hieradata/env/$JUJU_ENV_UUID.yaml
+touch /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
+sed -e "s/ENVIRONMENTNAME/$JUJU_ENV_UUID/g" \
+/etc/puppet/hieradata/env/template-staging.yaml > /etc/puppet/hieradata/env/$JUJU_ENV_UUID.yaml
+sed -e "s/base_url:.*/base_url: `unit-get private-address`/g" \
+-e "s/ENVIRONMENTNAME/$JUJU_ENV_UUID/g" \
+/etc/puppet/hieradata/fqdn/template-`echo $JUJU_UNIT_NAME | cut -d'/' -f1`.yaml > /etc/puppet/hieradata/fqdn/`unit-get private-address`.yaml
+
+juju-log "Running Puppet apply (a hacky couple of times?) to deploy onto the machine."
+cd /etc/puppet
+puppet apply /etc/puppet/manifests/site.pp --debug --verbose --external_nodes=/etc/puppet/nodes_extlookup.rb --confdir=/etc/puppet --node_terminus=exec --environment=$JUJU_ENV_UUID
+puppet apply /etc/puppet/manifests/site.pp --debug --verbose --external_nodes=/etc/puppet/nodes_extlookup.rb --confdir=/etc/puppet --node_terminus=exec --environment=$JUJU_ENV_UUID

@@ -1,3 +1,4 @@
 #!/bin/bash
-juju-log "Stopping apache"
-/etc/init.d/apache2 stop
+
+close-port 80/tcp
+close-port 443
