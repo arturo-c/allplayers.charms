@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -eux # -x for verbose logging to juju debug-log
+juju-log "Installing rubygems and puppet"
+apt-get update
+apt-get -y install rubygems unzip
+gem install --no-rdoc --no-ri --version=2.7.20 puppet
+apt-get install libgpgme11-dev make -y
+gem install --no-rdoc --no-ri hiera hiera-puppet rake
+wget https://github.com/glennpratt/hiera-gpg/raw/allplayers/pkg/hiera-gpg-1.1.1.gem
+gem install --no-rdoc --no-ri hiera-gpg-1.1.1.gem

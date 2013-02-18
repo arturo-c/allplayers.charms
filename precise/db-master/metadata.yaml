@@ -1,0 +1,8 @@
+name: db-master
+summary: "AllPlayers DB master"
+maintainer: "AllPlayers Ops <ops@allplayers.com>"
+description: |
+    Installs the AllPlayers DB master MySQL and MongoDB.
+provides:
+  db-master:
+    interface: mysql

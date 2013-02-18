@@ -1,0 +1,5 @@
+#!/bin/bash
+# Note: This may not be necessary; only for publicly exposing.
+# https://juju.ubuntu.com/docs/internals/expose-services.html
+# mysql
+open-port 3306
