@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # A script to copy ./Puppet dir compressed to all data dirs of charms that can be used.
 
 # Build Puppet zipfile...
