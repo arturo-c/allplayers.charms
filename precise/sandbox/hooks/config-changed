@@ -20,5 +20,6 @@ sed -e "s/base_url:.*/base_url: `unit-get private-address`/g" \
 
 juju-log "Running Puppet apply (a hacky couple of times?) to deploy onto the machine."
 cd /etc/puppet
-puppet apply /etc/puppet/manifests/site.pp --debug --verbose --external_nodes=/etc/puppet/nodes_extlookup.rb --confdir=/etc/puppet --node_terminus=exec --environment=$JUJU_ENV_UUID
-puppet apply /etc/puppet/manifests/site.pp --debug --verbose --external_nodes=/etc/puppet/nodes_extlookup.rb --confdir=/etc/puppet --node_terminus=exec --environment=$JUJU_ENV_UUID
+# Note: Can add "--debug --verbose"
+puppet apply /etc/puppet/manifests/site.pp --external_nodes=/etc/puppet/nodes_extlookup.rb --confdir=/etc/puppet --node_terminus=exec --environment=$JUJU_ENV_UUID
+puppet apply /etc/puppet/manifests/site.pp --external_nodes=/etc/puppet/nodes_extlookup.rb --confdir=/etc/puppet --node_terminus=exec --environment=$JUJU_ENV_UUID
