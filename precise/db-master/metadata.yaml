@@ -3,6 +3,7 @@ summary: "AllPlayers DB master"
 maintainer: "AllPlayers Ops <ops@allplayers.com>"
 description: |
     Installs the AllPlayers DB master MySQL and MongoDB.
+    Consider - https://code.launchpad.net/~charmers/charms/precise/mysql/trunk
 provides:
   db-master:
     interface: mysql

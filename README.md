@@ -31,10 +31,10 @@ Some links of note:
 juju deploy --constraints "instance-type=m1.large" --repository=. local:precise/frontend
 juju deploy --constraints "instance-type=m2.2xlarge" --repository=. local:precise/www
 # juju deploy --constraints "instance-type=m2.2xlarge" --repository=. local:precise/www
-# juju deploy --constraints "instance-type=hi1.4xlarge" --repository=. local:precise/db
+juju deploy --constraints "instance-type=hi1.4xlarge" --repository=. local:precise/db-master
 
 juju add-relation frontend www
-juju add-relation www db
+juju add-relation www db-master
 juju expose frontend
 ```
 
@@ -46,3 +46,4 @@ Match charm name to enforcer role.
 Puppet local dev copy to charms: `./scripts/mv_puppet_to_charms.sh`
 Templates for hooks shared across all charms: `./scripts/cp_hook_templates.sh`
 
+TODO: Puppet `$name` needs to be replaced with something explicit?
