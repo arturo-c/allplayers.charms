@@ -20,7 +20,7 @@ Some links of note:
 ## Provisioning AllPlayers stack as a single instance
 
 (sandbox)
-`juju deploy --constraints "mem=4G" --repository=allplayers.charms local:precise/sandbox`
+`juju deploy --constraints "mem=4G" --repository=. local:precise/sandbox`
 
 
 ## Provisioning AllPlayers stack as interconnected units
@@ -28,10 +28,10 @@ Some links of note:
 (staging / prod)
 
 ```sh
-juju deploy --constraints "instance-type=m1.large" --repository=allplayers.charms local:precise/frontend
-juju deploy --constraints "instance-type=m2.2xlarge" --repository=allplayers.charms local:precise/www
-# juju deploy --constraints "instance-type=m2.2xlarge" --repository=allplayers.charms local:precise/www
-# juju deploy --constraints "instance-type=hi1.4xlarge" --repository=allplayers.charms local:precise/db
+juju deploy --constraints "instance-type=m1.large" --repository=. local:precise/frontend
+juju deploy --constraints "instance-type=m2.2xlarge" --repository=. local:precise/www
+# juju deploy --constraints "instance-type=m2.2xlarge" --repository=. local:precise/www
+# juju deploy --constraints "instance-type=hi1.4xlarge" --repository=. local:precise/db
 
 juju add-relation frontend www
 juju add-relation www db
