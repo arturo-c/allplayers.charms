@@ -1,0 +1,11 @@
+#!/bin/bash
+
+hooksdir=$PWD
+juju-log "Relation db-master added to www."
+
+sed -i '' -e "s/mysql_master_hostEXAMPLECOM/`relation-get private-address`/g" \
+-e "s/webapp_vhostsdbhostEXAMPLECOM/`relation-get private-address`/g" \
+-e "s/webapp_vhostsmemcacheserversEXAMPLECOM/`unit-get private-address`/g" \
+/etc/puppet/hieradata/env/$JUJU_ENV_UUID.yaml
+
+$hooksdir/hooks/run-puppet
