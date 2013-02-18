@@ -53,3 +53,19 @@ TODO: Puppet `$name` needs to be replaced with something explicit?
 *  ENVIRONMENTNAME :: JUJU_ENV_UUID
 *  base_url:.* :: unit-get private-address
 
+## Juju environment definition (`~/.juju/environments.yaml`)
+
+```yaml
+default: apci-dev
+environments:
+  apci-dev:
+    type: ec2
+    access-key: <ACCESS KEY>
+    secret-key: <SECRET KEY>
+    control-bucket: juju-0b294901ace34a4192b0ed8bdeadbeef
+    admin-secret: bcec21eaf5da472e9657e472deadbeef
+    ssl-hostname-verification: true
+    juju-origin: ppa
+    default-series: precise
+```
+
