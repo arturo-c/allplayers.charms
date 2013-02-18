@@ -1,1 +1,4 @@
 #!/bin/bash
+
+close-port 80/tcp
+close-port 443
