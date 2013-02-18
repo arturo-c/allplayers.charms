@@ -1,0 +1,7 @@
+#!/bin/bash
+
+hooksdir=$PWD
+juju-log "Relation www added to frontend."
+sed -i '' -e "s/apache_backendswww0hostEXAMPLECOM/`relation-get private-address`/g" /etc/puppet/hieradata/env/$JUJU_ENV_UUID.yaml
+
+$hooksdir/hooks/run-puppet
