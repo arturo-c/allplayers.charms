@@ -1,0 +1,4 @@
+#!/bin/bash
+
+open-port 8080/tcp
+open-port 5678

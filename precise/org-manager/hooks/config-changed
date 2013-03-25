@@ -1,0 +1,9 @@
+#!/bin/bash
+
+hooksdir=$PWD
+
+# TODO: Accept config changes to pull an updated Puppet manifest and run
+#  another puppet apply.
+
+# Kick off puppet run
+$hooksdir/hooks/run-puppet

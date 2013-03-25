@@ -1,0 +1,5 @@
+name: org-manager
+summary: "AllPlayers org manager"
+maintainer: "AllPlayers Ops <ops@allplayers.com>"
+description: |
+    Installs the AllPlayers org manager server.
